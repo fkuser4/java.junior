@@ -8,12 +8,14 @@ import org.springframework.data.annotation.AccessType;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
 @Data
 @AccessType(AccessType.Type.PROPERTY)
+@Table("orders")
 public class Order {
 	@Id
-	private Long orderNr;
+	private Long orderId;
 	private Long buyerId;
 	//private Buyer buyer;
 	@Transient
@@ -45,6 +47,7 @@ public class Order {
 	private Long deliveryAddressId;
 	//	private BuyerAddress deliveryAddress;
 	private String contactNumber;
+	private String note;
 	private String currency;
 	private BigDecimal totalPrice;
 }

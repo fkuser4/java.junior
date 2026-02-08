@@ -10,8 +10,8 @@ public class OrderItem {
 	@Id
 	private Long orderItemId;
 	private Long orderId;
-	private Short itemNr;
+	private Integer itemNr;
 	private String name;
-	private Short quantity;
+	private Integer quantity;
 	private BigDecimal price;
 }
