@@ -22,3 +22,8 @@ MERGE INTO order_item (order_item_id, order_id, item_nr, name, quantity, price) 
     (3, 2, 1, 'Burger', 2, 12.00),
     (4, 2, 2, 'Pomfrit', 1, 5.00),
     (5, 2, 3, 'Sok', 2, 6.00);
+
+ALTER TABLE buyer ALTER COLUMN buyer_id RESTART WITH 6;
+ALTER TABLE buyer_address ALTER COLUMN buyer_address_id RESTART WITH 3;
+ALTER TABLE orders ALTER COLUMN order_id RESTART WITH 3;
+ALTER TABLE order_item ALTER COLUMN order_item_id RESTART WITH 6;

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Orders</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container my-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="mb-0">Order List</h3>
+        <a th:href="@{/order/addnew}" class="btn btn-primary btn-sm">Add Order</a>
+    </div>
+
+    <div class="mb-3">
+        <span class="mr-2">Sort by total amount:</span>
+        <a th:href="@{/order/(sort='desc')}" class="btn btn-outline-secondary btn-sm mr-1">Highest first</a>
+        <a th:href="@{/order/(sort='asc')}" class="btn btn-outline-secondary btn-sm">Lowest first</a>
+    </div>
+
+    <table class="table table-striped table-bordered table-sm">
+        <thead>
+        <tr>
+            <th>Buyer</th>
+            <th>Status</th>
+            <th>Time</th>
+            <th>Payment</th>
+            <th>Address</th>
+            <th>Contact</th>
+            <th>Note</th>
+            <th>Items</th>
+            <th>Amount</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${#lists.isEmpty(orderList)}">
+            <td colspan="10" class="text-center">No orders found.</td>
+        </tr>
+
+        <tr th:each="order : ${orderList}">
+            <td th:text="${order.buyerName}"></td>
+            <td th:text="${order.orderStatusLabel}"></td>
+            <td th:text="${#temporals.format(order.orderTime, 'dd.MM.yyyy HH:mm')}"></td>
+            <td th:text="${order.paymentOptionLabel}"></td>
+            <td th:text="${order.deliveryAddress}"></td>
+            <td th:text="${order.contactNumber}"></td>
+            <td th:text="${order.note}"></td>
+            <td>
+                <ul class="mb-0 pl-3">
+                    <li th:each="item : ${order.items}"
+                        th:text="${item.quantity + ' x ' + item.name + ' @ ' + item.price}"></li>
+                </ul>
+            </td>
+            <td th:text="${order.currency + ' ' + order.totalPrice}"></td>
+            <td>
+                <a th:href="@{/order/showFormForStatus/{id}(id=${order.orderId})}"
+                   class="btn btn-sm btn-outline-primary">Update Status</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a th:href="@{/buyer/}" class="btn btn-link px-0">Go to buyers</a>
+</div>
+</body>
+</html>

@@ -12,7 +12,7 @@ import org.springframework.data.relational.core.mapping.Table;
 
 @Data
 @AccessType(AccessType.Type.PROPERTY)
-@Table("orders")
+@Table("ORDERS")
 public class Order {
 	@Id
 	private Long orderId;
@@ -21,7 +21,7 @@ public class Order {
 	@Transient
 	private OrderStatus orderStatus;
 
-	@Column("order_status")
+	@Column("ORDER_STATUS")
 	public String getStringOrderStatus() {
 		return this.orderStatus.toString();
 	}
@@ -35,7 +35,7 @@ public class Order {
 	@Transient
 	private PaymentOption paymentOption;
 
-	@Column("payment_option")
+	@Column("PAYMENT_OPTION")
 	public String getStringPaymentOption() {
 		return this.paymentOption.toString();
 	}
